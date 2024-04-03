@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:random_color_app/model/background_color.dart';
+import 'package:random_color_app/widget/text_black_background.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -11,10 +12,7 @@ class HomePage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.black.withOpacity(0.35),
-        title: const Text(
-          'Random Color App',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: const Text('Random Color App'),
       ),
       body: Stack(
         children: [
@@ -26,7 +24,11 @@ class HomePage extends StatelessWidget {
               padding: MediaQuery.paddingOf(context),
               child: const _HelloText(),
             ),
-          )
+          ),
+          const Align(
+            alignment: Alignment(0, 0.7),
+            child: _ColorInfoText(),
+          ),
         ],
       ),
     );
@@ -63,18 +65,33 @@ class _HelloText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.35),
-          borderRadius: const BorderRadius.all(Radius.circular(24)),
+      child: TextBlackBackground(
+        child: Text(
+          'Hello There',
+          style: Theme.of(context).textTheme.titleLarge,
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Text(
-            'Hello There',
-            style: (Theme.of(context).textTheme.titleLarge ?? const TextStyle())
-                .copyWith(color: Colors.white),
-          ),
+      ),
+    );
+  }
+}
+
+class _ColorInfoText extends StatelessWidget {
+  // ignore: use_super_parameters
+  const _ColorInfoText({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: TextBlackBackground(
+        child: Consumer<BackgroundColor>(
+          builder: (_, color, __) {
+            final value = color.value;
+
+            return Text(
+              "Color(R:${value.red}, G:${value.green}, B:${value.blue})",
+              style: Theme.of(context).textTheme.titleMedium,
+            );
+          },
         ),
       ),
     );

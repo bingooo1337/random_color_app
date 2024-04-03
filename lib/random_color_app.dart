@@ -13,6 +13,16 @@ class RandomColorApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(fontSize: 22),
+        ),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontSize: 22),
+          titleMedium: TextStyle(fontSize: 16),
+        ).apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        ),
         useMaterial3: true,
       ),
       home: ChangeNotifierProvider(
