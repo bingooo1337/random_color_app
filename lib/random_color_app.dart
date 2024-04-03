@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:random_color_app/di/dependencies.dart';
-import 'package:random_color_app/page/home_page.dart';
+import 'package:random_color_app/home/page/home_page.dart';
 
 class RandomColorApp extends StatelessWidget {
   const RandomColorApp({super.key});

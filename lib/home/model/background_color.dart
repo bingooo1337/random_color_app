@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_color_app/service/color_generator.dart';
+import 'package:random_color_app/home/service/color_generator.dart';
 
 class BackgroundColor with ChangeNotifier {
   final ColorGenerator _colorGenerator;

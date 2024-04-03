@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:random_color_app/model/background_color.dart';
+import 'package:random_color_app/home/model/background_color.dart';
+import 'package:random_color_app/home/widget/text_black_background.dart';
 import 'package:random_color_app/util/color_display_ext.dart';
-import 'package:random_color_app/widget/text_black_background.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
