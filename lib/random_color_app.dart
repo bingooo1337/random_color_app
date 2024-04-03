@@ -18,7 +18,6 @@ class RandomColorApp extends StatelessWidget {
         ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(fontSize: 22),
-          titleMedium: TextStyle(fontSize: 16),
         ).apply(
           bodyColor: Colors.white,
           displayColor: Colors.white,

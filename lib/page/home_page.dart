@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:random_color_app/model/background_color.dart';
+import 'package:random_color_app/util/color_display_ext.dart';
 import 'package:random_color_app/widget/text_black_background.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,8 +28,8 @@ class HomePage extends StatelessWidget {
             ),
           ),
           const Align(
-            alignment: Alignment(0, 0.7),
-            child: _ColorInfoText(),
+            alignment: Alignment(0, 0.6),
+            child: _ColorInfoButton(),
           ),
         ],
       ),
@@ -75,25 +77,42 @@ class _HelloText extends StatelessWidget {
   }
 }
 
-class _ColorInfoText extends StatelessWidget {
+class _ColorInfoButton extends StatelessWidget {
   // ignore: use_super_parameters
-  const _ColorInfoText({Key? key}) : super(key: key);
+  const _ColorInfoButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: TextBlackBackground(
-        child: Consumer<BackgroundColor>(
-          builder: (_, color, __) {
-            final value = color.value;
+    return Consumer<BackgroundColor>(
+      builder: (_, color, __) {
+        final colorDisplayValue = color.value.displayValue;
 
-            return Text(
-              "Color(R:${value.red}, G:${value.green}, B:${value.blue})",
-              style: Theme.of(context).textTheme.titleMedium,
-            );
-          },
-        ),
-      ),
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(fixedSize: const Size(300, 40)),
+          onPressed: () => _onColorPressed(context, colorDisplayValue),
+          child: Text(
+            color.value.displayValue,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+        );
+      },
     );
+  }
+
+  Future<void> _onColorPressed(BuildContext context, String colorText) async {
+    await Clipboard.setData(ClipboardData(text: colorText));
+
+    if (context.mounted) {
+      ScaffoldMessenger.of(context)
+        ..clearSnackBars()
+        ..showSnackBar(
+          SnackBar(
+            content: Text(
+              'Copied!',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
+        );
+    }
   }
 }
