@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:random_color_app/di/dependencies.dart';
 import 'package:random_color_app/page/home_page.dart';
 
 class RandomColorApp extends StatelessWidget {
   const RandomColorApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,7 +15,10 @@ class RandomColorApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: ChangeNotifierProvider(
+        create: (_) => Dependencies.getBackgroundColor(),
+        child: const HomePage(),
+      ),
     );
   }
 }
