@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:random_color_app/home/model/background_color.dart';
 import 'package:random_color_app/home/widget/text_black_background.dart';
+import 'package:random_color_app/intl/random_color_localizations.dart';
 import 'package:random_color_app/util/color_display_ext.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +15,7 @@ class HomePage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.black.withOpacity(0.35),
-        title: const Text('Random Color App'),
+        title: Text(RandomColorLocalizations.I.appName),
       ),
       body: Stack(
         children: [
@@ -69,7 +70,7 @@ class _HelloText extends StatelessWidget {
     return IgnorePointer(
       child: TextBlackBackground(
         child: Text(
-          'Hello There',
+          RandomColorLocalizations.I.helloThere,
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
@@ -108,7 +109,7 @@ class _ColorInfoButton extends StatelessWidget {
         ..showSnackBar(
           SnackBar(
             content: Text(
-              'Copied!',
+              RandomColorLocalizations.I.copied,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
