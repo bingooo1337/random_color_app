@@ -4,7 +4,9 @@ import 'package:random_color_app/di/dependencies.dart';
 import 'package:random_color_app/home/page/home_page.dart';
 import 'package:random_color_app/intl/random_color_localizations.dart';
 
+/// Top level widget of Random Color App
 class RandomColorApp extends StatelessWidget {
+  /// Creates RandomColorApp instance
   const RandomColorApp({super.key});
 
   @override

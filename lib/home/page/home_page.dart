@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:random_color_app/home/model/background_color.dart';
+import 'package:random_color_app/home/model/home_background_color.dart';
 import 'package:random_color_app/home/widget/text_black_background.dart';
 import 'package:random_color_app/intl/random_color_localizations.dart';
 import 'package:random_color_app/util/color_display_ext.dart';
 
+/// HomePage with random background color implementation
 class HomePage extends StatelessWidget {
+  /// Creates HomePage instance
   const HomePage({super.key});
 
   @override
@@ -47,9 +49,9 @@ class _HomeBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.read<BackgroundColor>().updateColor();
+        context.read<HomeBackgroundColor>().updateColor();
       },
-      child: Consumer<BackgroundColor>(
+      child: Consumer<HomeBackgroundColor>(
         builder: (_, color, __) {
           return AnimatedContainer(
             duration: const Duration(milliseconds: 250),
@@ -84,7 +86,7 @@ class _ColorInfoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<BackgroundColor>(
+    return Consumer<HomeBackgroundColor>(
       builder: (_, color, __) {
         final colorDisplayValue = color.value.displayValue;
 
